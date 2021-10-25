@@ -11,7 +11,11 @@
 * Copy the connetion string
 * Download the CA certificate
 
-### Created the Backend 
+### Create the Backend 
 
 * Download the backend folder
 * run `npm install`
+
+### Create the Frontend
+
+* [Github Link](https://github.com/jeanwang2dev/fullstack-js-app-frontend)
