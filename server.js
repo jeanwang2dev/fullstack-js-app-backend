@@ -69,6 +69,16 @@ app.get('/tweets', async(req, res) => {
     res.json({tweets });
 });
 
+// --read the tasks
+
+app.get('/tasks', async(req, res) => {
+
+    const db = await connectToDatabase();
+    const  tasks = await db.collection("tasks").find({}).toArray();
+
+    res.json({ tasks });
+});
+
 // --update
 
 app.put("/tweets/:tweetId", async(req, res) => {
