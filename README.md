@@ -15,7 +15,9 @@
 
 * Download the backend folder
 * run `npm install`
+* run `npm run def`
 
 ### Create the Frontend
 
 * [Github Link](https://github.com/jeanwang2dev/fullstack-js-app-frontend)
+

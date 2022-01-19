@@ -16,6 +16,8 @@ const port = process.env.PORT || 1337;
 app.use(express.json());
 app.use(cors());
 
+// app.use(authenticateUser()); middleware
+
 // connect to our mongodb database
 
 let cachedClient = null;
@@ -28,11 +30,11 @@ async function connectToDatabase(){
     const client = await MongoClient.connect(process.env.DATABASE_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        tls: true,
-        tlsCAFile: "./ca-certificate.crt",
+        // tls: true,
+        // tlsCAFile: "./ca-certificate.crt",
     });
 
-    const db = client.db('twitter');
+    const db = client.db('mongodbVSCodePlaygroundDB');
     
     cachedClient = client;
     cachedDB = db;
