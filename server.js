@@ -54,12 +54,21 @@ app.get('/', (req, res) => {
 app.post("/tweets", async(req, res) => {
 
     const text = req.body.text;
+    const date = randomDate(new Date(2020, 0, 1), new Date())
     const db = await connectToDatabase();
-    const tweet = await db.collection("tweets").insertOne({text});
+    const tweet = await db.collection("tweets").insertOne({
+        text : text,
+        read : false,
+        date : date,
+    });
 
     res.send({tweet});
 
 });
+
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
 
 // --read
 
@@ -87,10 +96,11 @@ app.put("/tweets/:tweetId", async(req, res) => {
 
     const tweetId = req.params.tweetId;
     const text = req.body.text;
+    const date = req.body.date;
     const db = await connectToDatabase();
     const tweet = await db
         .collection("tweets")
-        .updateOne({_id: mongodb.ObjectId(tweetId) }, { $set: {text} });
+        .updateOne({_id: mongodb.ObjectId(tweetId) }, { $set: { "text":text, "read": false, "date": date},  });
 
     res.send({tweet});
 
