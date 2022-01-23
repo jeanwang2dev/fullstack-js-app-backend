@@ -80,14 +80,17 @@ app.get('/tweets', async(req, res) => {
     res.json({tweets });
 });
 
-// --read the tasks
+// --read the tweet
 
-app.get('/tasks', async(req, res) => {
+app.get('/tweets/:tweetId', async(req, res) => {
 
+    const tweetId = req.params.tweetId;
     const db = await connectToDatabase();
-    const  tasks = await db.collection("tasks").find({}).toArray();
+    const  tweet = await db
+        .collection("tweets")
+        .findOne({ _id: mongodb.ObjectId(tweetId)});
 
-    res.json({ tasks });
+    res.json({ tweet });
 });
 
 // --update
@@ -96,7 +99,7 @@ app.put("/tweets/:tweetId", async(req, res) => {
 
     const tweetId = req.params.tweetId;
     const text = req.body.text;
-    const date = req.body.date;
+    const date = randomDate(new Date(2020, 0, 1), new Date())
     const db = await connectToDatabase();
     const tweet = await db
         .collection("tweets")
