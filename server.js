@@ -65,6 +65,7 @@ app.post("/tweets", async(req, res) => {
         lname: lname,
         read : false,
         date : date,
+        gender: gender
     });
 
     res.send({tweet});
