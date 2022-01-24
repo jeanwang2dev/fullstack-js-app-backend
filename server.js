@@ -54,10 +54,14 @@ app.get('/', (req, res) => {
 app.post("/tweets", async(req, res) => {
 
     const text = req.body.text;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
     const date = randomDate(new Date(2020, 0, 1), new Date())
     const db = await connectToDatabase();
     const tweet = await db.collection("tweets").insertOne({
         text : text,
+        fname: fname,
+        lname: lname,
         read : false,
         date : date,
     });
