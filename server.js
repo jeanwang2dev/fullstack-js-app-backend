@@ -67,7 +67,7 @@ app.post("/tweets", async(req, res) => {
         date : date,
         gender: gender
     });
-
+    console.log("fname: " + fname);
     res.send({tweet});
 
 });
