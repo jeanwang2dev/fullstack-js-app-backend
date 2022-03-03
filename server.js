@@ -6,7 +6,6 @@ const express = require('express');
 const mongodb = require('mongodb');
 const cors = require('cors');
 
-
 // configure our app
 
 const app = express();
