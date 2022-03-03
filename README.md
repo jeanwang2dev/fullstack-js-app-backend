@@ -15,7 +15,12 @@
 
 * Download the backend folder
 * run `npm install`
-* run `npm run def`
+* run `npm run dev`
+
+### Deploy the backend to Heroku
+
+ * This backend live in [link](https://nodejs-tweets-app.herokuapp.com/tweets)
+ * Connects to MongoDB on Atlas
 
 ### Create the Frontend
 
