@@ -1,3 +1,4 @@
+ca-certificate.crt
 .DS_Store
 /node_modules
 /dist
