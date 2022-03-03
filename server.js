@@ -76,7 +76,7 @@ function randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-// --read
+// --Retrieve all Tweets
 
 app.get('/tweets', async(req, res) => {
 
@@ -86,7 +86,7 @@ app.get('/tweets', async(req, res) => {
     res.json({tweets });
 });
 
-// --read the tweet
+// --Retrieve a single tweet with tweetId
 
 app.get('/tweets/:tweetId', async(req, res) => {
 
@@ -99,23 +99,29 @@ app.get('/tweets/:tweetId', async(req, res) => {
     res.json({ tweet });
 });
 
-// --update
+// --Update a tweet with tweetId
 
 app.put("/tweets/:tweetId", async(req, res) => {
 
     const tweetId = req.params.tweetId;
     const text = req.body.text;
-    const date = randomDate(new Date(2020, 0, 1), new Date())
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const gender = req.body.gender;
+    const read = req.body.read;
+    const date = req.body.date;
     const db = await connectToDatabase();
     const tweet = await db
         .collection("tweets")
-        .updateOne({_id: mongodb.ObjectId(tweetId) }, { $set: { "text":text, "read": false, "date": date},  });
-
+        .updateOne(
+            {_id: mongodb.ObjectId(tweetId) }, 
+            { $set: { "text":text, "read": read,  "date": date, "fname":fname, "lname":lname, "gender":gender},  
+        });
     res.send({tweet});
 
 });
 
-// --delete
+// --delete a tweet with tweetId
 
 app.delete("/tweets/:tweetId", async(req, res) => {
 
